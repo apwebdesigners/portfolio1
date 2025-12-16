@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Nama - Bella Italia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #d4a574;
+            --secondary-color: #2c2c2c;
+            --accent-color: #c41e3a;
+            --light-color: #f5f5f5;
+            --dark-color: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--secondary-color);
+            background-color: var(--light-color);
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="40" fill="none" stroke="%23d4a574" stroke-width="1" opacity="0.3"/></pattern></defs><rect width="1200" height="400" fill="%231a1a1a"/><rect width="1200" height="400" fill="url(%23pattern)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 20px 80px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            color: white;
+        }
+
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .value-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .value-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .team-member-image {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .team-member-info {
+            padding: 20px;
+        }
+
+        .team-member-info h4 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🍝 Bella Italia</a>
+            <ul>
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="about.html">O nama</a></li>
+                <li><a href="menu.html">Meni</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>O nama</h1>
+        <p>Poznajte naše restitore i priču koja nas motivira</p>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Naša Priča</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Bella Italia - Restoran sa Srcem</h3>
+                <p>Bella Italia je otvorena 2015. godine kao rezultat dugogodišnje strasti prema italijanskoj kuhinji. Osnivač Marco Rossi je nakon 10 godina rada u Milanskom kuvarskom svetu odlučio da donese autentičnu Italiju u našu zajednicu.</p>
+                <p>Svaki obrok koji poslužujemo je rezultat pažljive selekcije sastojaka i tradicijskih recepta nasledjenih kroz generacije. Radimo direktno sa domaćim dobavljačima i uvoznim robom direktno iz Italije kako bismo osigurali najbolji mogući kvalitet.</p>
+                <p>Naš pristup je jednostavan: kvaliteta pre količine, vreme sa gostima, i bezuslovna ljubav prema hrani. To nas čini posebnim.</p>
+            </div>
+            <div class="about-image">🇮🇹</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Naše Vrednosti</h2>
+        <div class="values">
+            <div class="value-card">
+                <div class="icon">🌾</div>
+                <h4>Kvaliteta</h4>
+                <p>Samo najbolji sastojci iz Italije i lokalnih partnera. Svaki obrok ima značaj.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon">👥</div>
+                <h4>Iskustvo Gostiju</h4>
+                <p>Naš tim je dedikovan da učini vašu posetu nezaboravnom i ugodnom.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon">🎓</div>
+                <h4>Tradicija</h4>
+                <p>Štitimo bogatstvo italijanske kulture kroz autentične recepte i metode kuvanja.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon">💚</div>
+                <h4>Ljubav</h4>
+                <p>Svaki obrok je priređen sa ljubavlju i pažnjom prema detaljima.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Naš Tim</h2>
+        <div class="team">
+            <div class="team-member">
+                <div class="team-member-image">👨‍🍳</div>
+                <div class="team-member-info">
+                    <h4>Marco Rossi</h4>
+                    <p>Izvršni šef kuvar</p>
+                    <p>Iskustvo: 25 godina u kuhinji. Izveštač iz Milana sa specijalizacijom u severnoj italijanskoj kuhinji.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-member-image">👩‍🍳</div>
+                <div class="team-member-info">
+                    <h4>Giulia Moretti</h4>
+                    <p>Šef deserta</p>
+                    <p>Iskustvo: 15 godina. Specijalizovana za tradicionalne italijanske deserte i sveže paste.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-member-image">🍷</div>
+                <div class="team-member-info">
+                    <h4>Paolo Benedetti</h4>
+                    <p>Sommelier</p>
+                    <p>Iskustvo: 12 godina. Certifikovani sommelier sa velikim znanjem o italijanskim vinima.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-member-image">👨‍💼</div>
+                <div class="team-member-info">
+                    <h4>Andrea Colombo</h4>
+                    <p>Upravitelj Restorana</p>
+                    <p>Iskustvo: 20 godina u uslužnoj industriji. Osigurava savršeno iskustvo za sve naše goste.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Bella Italia Restoran. Sva prava zadržana.</p>
+        <p>Donesen sa ❤️ za sve ljubitelje italijanske kuhinje</p>
+    </footer>
+</body>
+</html>

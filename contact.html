@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - Bella Italia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #d4a574;
+            --secondary-color: #2c2c2c;
+            --accent-color: #c41e3a;
+            --light-color: #f5f5f5;
+            --dark-color: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--secondary-color);
+            background-color: var(--light-color);
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="40" fill="none" stroke="%23d4a574" stroke-width="1" opacity="0.3"/></pattern></defs><rect width="1200" height="400" fill="%231a1a1a"/><rect width="1200" height="400" fill="url(%23pattern)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 20px 80px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        /* Reservation form highlight */
+        .highlight {
+            box-shadow: 0 0 0 6px rgba(212,165,116,0.12) inset;
+            transition: box-shadow 0.6s ease-out;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .contact-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .info-item {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 15px;
+        }
+
+        .info-item .icon {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            min-width: 40px;
+        }
+
+        .info-item div {
+            flex: 1;
+        }
+
+        .info-item strong {
+            color: var(--secondary-color);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #a01630;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 50px;
+        }
+
+        .success-message {
+            display: none;
+            background-color: #4caf50;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🍝 Bella Italia</a>
+            <ul>
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="about.html">O nama</a></li>
+                <li><a href="menu.html">Meni</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Kontaktirajte Nas</h1>
+        <p>Slobodno nas kontaktirajte za rezervacije ili bilo koja pitanja</p>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Kontakt Informacije</h2>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h4>Direktan Kontakt</h4>
+                <div class="info-item">
+                    <span class="icon">📍</span>
+                    <div>
+                        <strong>Adresa:</strong>
+                        Ilica 100<br>
+                        10000 Zagreb<br>
+                        Hrvatska
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">📞</span>
+                    <div>
+                        <strong>Telefon:</strong>
+                        +385 1 1234 5678
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">✉️</span>
+                    <div>
+                        <strong>Email:</strong>
+                        info@bellaitalia.hr
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">🕐</span>
+                    <div>
+                        <strong>Radno Vrijeme:</strong>
+                        Ponedjeljak - Četvrtak: 11:00 - 23:00<br>
+                        Petak - Subota: 11:00 - 00:00<br>
+                        Nedelja: 12:00 - 23:00<br>
+                        <em>Zatvoreni ponedjeljkom</em>
+                    </div>
+                </div>
+            </div>
+            <!-- Rezervacija -->
+            <form class="reservation-form" id="reservationForm">
+                <div class="success-message" id="reservationSuccess">
+                    Hvala! Vaša rezervacija je primljena. Kontaktirat ćemo vas radi potvrde.
+                </div>
+                <div class="form-group">
+                    <label for="r-name">Ime i Prezime *</label>
+                    <input type="text" id="r-name" name="r-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="r-email">Email *</label>
+                    <input type="email" id="r-email" name="r-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="r-phone">Telefon</label>
+                    <input type="tel" id="r-phone" name="r-phone">
+                </div>
+                <div class="form-group">
+                    <label for="r-date">Datum *</label>
+                    <input type="date" id="r-date" name="r-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="r-time">Vrijeme *</label>
+                    <input type="time" id="r-time" name="r-time" required>
+                </div>
+                <div class="form-group">
+                    <label for="r-guests">Broj gostiju *</label>
+                    <input type="number" id="r-guests" name="r-guests" min="1" max="20" value="2" required>
+                </div>
+                <div class="form-group">
+                    <label for="r-message">Posebne napomene</label>
+                    <textarea id="r-message" name="r-message"></textarea>
+                </div>
+                <button type="submit" class="btn">Pošalji Rezervaciju</button>
+            </form>
+
+            <!-- Opća kontakt forma uklonjena -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Bella Italia Restoran. Sva prava zadržana.</p>
+        <p>Donesen sa ❤️ za sve ljubitelje italijanske kuhinje</p>
+    </footer>
+
+    <script>
+        // Reservation form handling
+        const reservationForm = document.getElementById('reservationForm');
+        const reservationSuccess = document.getElementById('reservationSuccess');
+
+        reservationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Simple client-side validation
+            const name = document.getElementById('r-name').value.trim();
+            const email = document.getElementById('r-email').value.trim();
+            const date = document.getElementById('r-date').value;
+            const time = document.getElementById('r-time').value;
+            const guests = document.getElementById('r-guests').value;
+
+            if (!name || !email || !date || !time || !guests) {
+                alert('Molimo popunite sva obavezna polja za rezervaciju.');
+                return;
+            }
+
+            // Show success message and clear
+            reservationSuccess.classList.add('show');
+            reservationForm.reset();
+
+            // Optionally save to localStorage for demo (no backend)
+            try {
+                const bookings = JSON.parse(localStorage.getItem('bella_reservations') || '[]');
+                bookings.push({name, email, date, time, guests, note: document.getElementById('r-message').value || ''});
+                localStorage.setItem('bella_reservations', JSON.stringify(bookings));
+            } catch (err) {
+                // ignore storage errors
+            }
+
+            setTimeout(() => reservationSuccess.classList.remove('show'), 6000);
+        });
+
+        // If opened with #reservation, scroll and highlight the reservation form
+        function focusReservation() {
+            const hash = window.location.hash;
+            if (hash === '#reservation') {
+                const el = document.getElementById('reservationForm');
+                if (el) {
+                    setTimeout(() => {
+                        el.scrollIntoView({behavior:'smooth', block:'center'});
+                        el.classList.add('highlight');
+                        setTimeout(() => el.classList.remove('highlight'), 2000);
+                    }, 200);
+                }
+            }
+        }
+
+        window.addEventListener('load', focusReservation);
+    </script>
+</body>
+</html>
